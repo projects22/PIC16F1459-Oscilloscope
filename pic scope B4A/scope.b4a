@@ -37,8 +37,6 @@ Sub Globals
 	Private btnConnect As Button
 	Private pnlGraph As Panel
 	Private cvsActivity, cvsGraph As Canvas
-	'Private btn2 As Button
-	'Private btn1 As Button
 	Private Label1 As Label
 	Private i, yp=210 As Int
 	
@@ -97,7 +95,7 @@ Private Sub serial_DataAvailable (Buffer() As Byte)		'60 bytes received
 			cvsGraph.DrawLine(300, 0, 300, 420, Colors.blue, 1dip)
 			pnlGraph.Invalidate
 			
-		'curve made out of 60 lines	
+		'curve made out of 62 lines	
 	If Buffer.Length > 61 Then
 		yp=210
 	For i=0 To 61
@@ -116,35 +114,15 @@ Private Sub serial_DataAvailable (Buffer() As Byte)		'60 bytes received
 End Sub
 
 Sub send
-'	Dim wide As String ="1"
-'	Dim j=True As Boolean
-'	Do While j
+
 	Sleep(1000)
 	If RadioButton1.Checked Then timeB="1"
 	If RadioButton2.Checked Then timeB="2"
 	If RadioButton3.Checked Then timeB="3"
 	If RadioButton4.Checked Then timeB="4"
-	'usbserial.Write(wide.GetBytes("UTF8"))
 	usbserial.Write(timeB.GetBytes("UTF8"))
 
-'	Loop
 End Sub
-
-'Sub RadioButton1_Checked
-'	timeB="a"
-'End Sub
-'
-'Sub RadioButton2_Checked
-'	timeB="b"
-'End Sub
-'
-'Sub RadioButton3_Checked
-'	timeB="c"
-'End Sub
-'
-'Sub RadioButton4_Checked
-'	timeB="d"
-'End Sub
 
 Sub Activity_Resume
 
@@ -153,17 +131,4 @@ End Sub
 Sub Activity_Pause (UserClosed As Boolean)
 
 End Sub
-
-'Sub btn2_click		'send low freq flag byte
-'	Dim wide As String ="1"
-'	'Dim j=True As Boolean
-'	'Do While j
-'	usbserial.Write(wide.GetBytes("UTF8"))
-'	'Loop
-'End Sub
-'
-'Sub btn1_click		'higher freq flag byte
-'	Dim wide As String ="2"
-'	usbserial.Write(wide.GetBytes("UTF8"))
-'End Sub
 
